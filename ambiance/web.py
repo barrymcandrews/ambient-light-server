@@ -3,7 +3,7 @@ from sanic.response import html
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 bp = Blueprint(__name__)
-env = Environment(loader=PackageLoader('main', 'views'),autoescape=select_autoescape(['html', 'xml']))
+env = Environment(loader=PackageLoader('web', 'templates'), autoescape=select_autoescape(['html', 'xml']))
 
 
 @bp.route('/')
