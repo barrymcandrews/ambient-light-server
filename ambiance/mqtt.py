@@ -25,5 +25,5 @@ async def start_client():
 
 
 @router.topic('color', QOS_1)
-def handle_color_change():
+async def handle_color_change():
     pass

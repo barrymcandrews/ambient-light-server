@@ -13,6 +13,7 @@ app = Sanic(__name__)
 
 
 def main():
+    app.config.LOGO = config.GeneralOptions.logo
     app.blueprint(bp)
     server = app.create_server(host=config.WebOptions.hostname,
                                port=config.WebOptions.port,
@@ -21,8 +22,8 @@ def main():
     asyncio.set_event_loop(uvloop.new_event_loop())
     loop = asyncio.get_event_loop()
 
-    server_task = asyncio.ensure_future(server)
-    mqtt_task = asyncio.ensure_future(mqtt.start_client)
+    web_task = asyncio.ensure_future(server)
+    mqtt_task = asyncio.ensure_future(mqtt.start_client())
 
     signal(SIGINT, lambda s, f: loop.stop())
 
