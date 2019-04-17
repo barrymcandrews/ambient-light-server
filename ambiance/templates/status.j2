@@ -1,0 +1,63 @@
+<html>
+<head>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-head">
+            <div>Version 0.0.1</div>
+        </div>
+        <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class="active"><a href="/status">Status</a></li>
+            <li><a href="/sensors">Sensors</a></li>
+            <li><a href="/lights">Lights</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <nav><span>Status</span></nav>
+        <div>
+            <div class="section">
+                <h3>MQTT Server</h3>
+                {% if mqtt_connected %}
+                    <h6 class="status-good">CONNECTED</h6>
+                {% else %}
+                     <h6 class="status-bad">DISCONNECTED</h6>
+                {% endif %}
+                <p>
+                    Current Connection URL: <br>
+                    <a href="mqtt://ec2-54-158-107-32.compute-1.amazonaws.com:1883">mqtt://ec2-54-158-107-32.compute-1.amazonaws.com:1883</a><br>
+                    {% if not mqtt_connected %}
+                        Restart the server to reconnect.
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>Philips Hue Bridge</h3>
+                {% if hue_connected %}
+                    <h6 class="status-good">CONNECTED</h6>
+                {% else %}
+                     <h6 class="status-bad">DISCONNECTED</h6>
+                {% endif %}
+                <p>
+{#                    Current Connection URL: <br>#}
+{#                    <a href="{{ hue_url }}">{{ hue_url }}</a><br>#}
+{#                    {% if not hue_connected %}#}
+{#                        Restart the server to reconnect.#}
+{#                    {% endif %}#}
+                    Remote Connection Mode <br>
+                    {% if hue_connected %}
+                        <a href="/auth/logout">Log Out</a>
+                    {% else %}
+                         <a href="/auth/login">Log In</a>
+                    {% endif %}
+                </p>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

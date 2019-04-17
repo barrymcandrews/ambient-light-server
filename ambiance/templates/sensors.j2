@@ -1,0 +1,37 @@
+<html>
+<head>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-head">
+            <div>Version 0.0.1</div>
+        </div>
+        <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/status">Status</a></li>
+            <li class="active"><a href="/sensors">Sensors</a></li>
+            <li><a href="/lights">Lights</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <nav><span>Sensors</span></nav>
+        {%  for i, s in sensors %}
+        <div class="section">
+            <h3>Sensor {{ i + 1 }}</h3>
+            <h6 class="status">UDID: {{ s }}</h6>
+            <p>
+                <span>Sensor Type:</span>
+                <select>
+                    <option>Indoor</option>
+                    <option>Outdoor</option>
+                </select>
+                 <button>Change</button>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

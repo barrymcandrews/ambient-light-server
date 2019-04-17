@@ -38,7 +38,7 @@ class Router(object):
         for my_topic in self.topics:
             wc = my_topic.find_wildchars(msg_topic_list)
             if wc is not None:
-                print("Message recieved. Topic:  " + message.topic)
+                # print("Message recieved. Topic:  " + message.topic)
                 await my_topic.handler(message, *wc)
 
     # Decorator
@@ -47,5 +47,3 @@ class Router(object):
             self.topics.append(Topic(topic, qos, handler))
             return handler
         return decorator
-
-

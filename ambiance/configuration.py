@@ -1,11 +1,12 @@
 import configparser
 
 parser = configparser.ConfigParser()
-parser.read('../defaults.conf')
+parser.read('defaults.conf')
 
 # Section Titles
 MQTT = 'mqtt'
 WEB = 'web'
+HUE = 'hue'
 
 
 class GeneralOptions(object):
@@ -33,3 +34,9 @@ class WebOptions(object):
     port: int = parser.getint(WEB, 'port', fallback=8080)
     debug: bool = parser.getboolean(WEB, 'debug', fallback=False)
 
+
+# Hue Settings
+class HueOptions(object):
+    bridge_url: str = parser.get(HUE, 'bridge_url', fallback='localhost')
+    username: str = parser.get(HUE, 'username', fallback=None)
+    create_username_on_start: bool = parser.getboolean(HUE, 'create_username_on_start', fallback=True)

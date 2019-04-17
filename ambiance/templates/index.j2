@@ -1,5 +1,68 @@
 <html>
+<head>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
 <body>
-    <h1>Hello!</h1>
+
+    <div class="sidebar">
+        <div class="sidebar-head">
+            <div>Version 0.0.1</div>
+        </div>
+        <ul>
+            <li class="active"><a href="/">Home</a></li>
+            <li class=""><a href="/status">Status</a></li>
+            <li><a href="/sensors">Sensors</a></li>
+            <li><a href="/lights">Lights</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <nav><span>Ambiance</span></nav>
+
+        <div class="section">
+            <h3>Demo Options</h3>
+            <form action="/demo" method="post">
+                <button type="submit">Simulate Day</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <form action="/data" method="post">
+                <h3>Lighting Mode</h3>
+                <select>
+                    <option value="algorithm">Adaptive Lighting Mode</option>
+                    <option value="manual">Manual Control</option>
+                </select>
+                <button>Change Mode</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h3>Current Room Stats</h3>
+            {% if data_exists %}
+                <h6>Red</h6>
+                <p>{{ data['rgb']['r'] }}</p>
+                <h6>Green</h6>
+                <p>{{ data['rgb']['g'] }}</p>
+                <h6>Blue</h6>
+                <p>{{ data['rgb']['b'] }}</p>
+            {% else %}
+                <p>No Data Yet</p>
+            {% endif %}
+        </div>
+
+        <div class="section">
+            <form action="/data" method="post">
+                <h3>Algorithm Parameters</h3>
+                <h6>Wakeup Time</h6>
+                <p><input class="slider" type="time" id="myRange" value="07:00"></p>
+                <h6>Sleep Time</h6>
+                <p><input class="slider" type="time" id="myRange" value="23:00"></p>
+                <h6>Night Brightness</h6>
+                <p><input class="slider" type="number" min="0" max="65536" value="400" id="myRange">lux</p>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

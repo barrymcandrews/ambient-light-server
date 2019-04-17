@@ -7,7 +7,8 @@ install_requires = [
     'sanic',
     'hbmqtt',
     'uvloop',
-    'jinja2'
+    'jinja2',
+    'aiohttp'
 ]
 
 setup(

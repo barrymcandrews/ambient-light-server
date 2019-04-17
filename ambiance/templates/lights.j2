@@ -1,0 +1,32 @@
+<html>
+<head>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-head">
+            <div>Version 0.0.1</div>
+        </div>
+        <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/status">Status</a></li>
+            <li><a href="/sensors">Sensors</a></li>
+            <li class="active"><a href="/lights">Lights</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <nav><span>Lights</span></nav>
+        {%  for id, light in lights.items() %}
+        <div class="section">
+            <h3>{{ light['name'] }}</h3>
+            <h6 class="status">Hue Color Bulb</h6>
+{#            <p>#}
+{#                <div>Current Color: #FFFFFF</div>#}
+{#            </p>#}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
